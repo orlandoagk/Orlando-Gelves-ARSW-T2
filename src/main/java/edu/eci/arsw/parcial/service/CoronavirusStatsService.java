@@ -3,6 +3,7 @@ package edu.eci.arsw.parcial.service;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import edu.eci.arsw.parcial.models.Country;
 import edu.eci.arsw.parcial.persistence.CoronavirusStatsCache;
+import edu.eci.arsw.parcial.persistence.CoronavirusStatsException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class CoronavirusStatsService {
      * @param country Es el pais del cual quiere conseguir información con respecto al Covid19
      * @return Retorna un String en formato JSON con la información del pais puesto
      */
-    public String getCovidStatsByName(String country){
+    public String getCovidStatsByName(String country) throws CoronavirusStatsException {
         String info = null;
         try {
             if(coronavirusStatsCache.estaEnCache(country)){
@@ -53,7 +54,7 @@ public class CoronavirusStatsService {
                 info = infoReal;
             }
         } catch (UnirestException e) {
-            e.printStackTrace();
+            throw new CoronavirusStatsException(CoronavirusStatsException.FALLO_EN_REQUEST);
         }
         return info;
     }
@@ -62,7 +63,7 @@ public class CoronavirusStatsService {
      *
      * @return Retorna un String en formato JSON el cual tendrá la información de todos los paises contagiados por el virus Covid19
      */
-    public String getCovidStatsAll(){
+    public String getCovidStatsAll() throws CoronavirusStatsException {
         String info = null;
         try {
             info = httpConnectionService.getCovid19StatsAll();
@@ -91,7 +92,7 @@ public class CoronavirusStatsService {
 
 
         } catch (UnirestException e) {
-            e.printStackTrace();
+            throw new CoronavirusStatsException(CoronavirusStatsException.FALLO_EN_REQUEST);
         }
         return info;
     }

@@ -1,5 +1,18 @@
 # Escuela Colombiana de Ingeniería Julio Garavito - Arquitecturas de Software ARSW - Parcial Segundo Tercio
 
+##Respuestas de entregable
+1) [Link a Aplicación de Heroku](http://orlando-gelves-arsw-t2.herokuapp.com/) -
+[Link a repositorio de Github](https://github.com/orlandoagk/Orlando-Gelves-ARSW-T2)
+2) Javadoc generado en la ruta /Documentacion dentro del proyecto
+3)
+    * El tipo de arquitectura que usamos es Cliente/Servidor, teninendo un JS que consume como cliente y un Java que ofrece servicios como servidor y a la vez consume servicios de otra API como cliente
+    * El programa se puede ejecutar desde terminal usando el comando mvn spring-boot:run o desde la clase CoronavirusApiMain ejecutando el Main.
+    * Ninguna clase esta fuertemente acoplada, además de usar inyección de dependencias lo cual ayuda a desacoplar un poco más, se puede extender creando un nuevo HTTPConection el cual podría consultar otra API facilmente
+    * [Link a Aplicación de Heroku](http://orlando-gelves-arsw-t2.herokuapp.com/)
+    * Se realizó el primer bono el cual es el del caché
+4) Realizado
+5) Realizado
+
 ## Preparación para el Parcial
 
 Con el objetivo de preparar el examen final del segundo tercio, por favor siga las siguientes instrucciones.

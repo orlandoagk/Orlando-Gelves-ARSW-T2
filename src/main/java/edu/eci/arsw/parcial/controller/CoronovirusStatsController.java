@@ -1,10 +1,15 @@
 package edu.eci.arsw.parcial.controller;
 
+import edu.eci.arsw.parcial.CoronovirusApiMain;
+import edu.eci.arsw.parcial.persistence.CoronavirusStatsException;
 import edu.eci.arsw.parcial.service.CoronavirusStatsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/covid19")
@@ -19,8 +24,16 @@ public class CoronovirusStatsController {
      */
     @RequestMapping(value = "/getCasesByCountry/{country}",method = RequestMethod.GET)
     public ResponseEntity<?> getCasesByCountry(@PathVariable String country){
-        String stats = coronavirusStatsService.getCovidStatsByName(country);
-        return new ResponseEntity<>(stats, HttpStatus.OK);
+
+        try {
+            String stats = coronavirusStatsService.getCovidStatsByName(country);
+            return new ResponseEntity<>(stats, HttpStatus.OK);
+        } catch (CoronavirusStatsException e) {
+            Logger.getLogger(CoronovirusApiMain.class.getName()).log(Level.SEVERE, null, e);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        }
+
     }
 
     /**
@@ -29,8 +42,14 @@ public class CoronovirusStatsController {
      */
     @RequestMapping(value="/getAllCases")
     public ResponseEntity<?> getAllCases(){
-        String stats = coronavirusStatsService.getCovidStatsAll();
-        return new ResponseEntity<>(stats,HttpStatus.OK);
+        try {
+            String stats = coronavirusStatsService.getCovidStatsAll();
+            return new ResponseEntity<>(stats, HttpStatus.OK);
+        } catch (CoronavirusStatsException e) {
+            Logger.getLogger(CoronovirusApiMain.class.getName()).log(Level.SEVERE, null, e);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        }
     }
 
 }
