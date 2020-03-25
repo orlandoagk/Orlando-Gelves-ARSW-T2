@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coronavirus 19 Stats</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+
+    <script src="/webjars/bootstrap/4.1.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.1.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/estilo.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/apiclient.js"></script>
+    <script src="js/app.js"></script>
+
+
+
+
+    <link rel="stylesheet"
+          href="/webjars/bootstrap/4.1.2/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h1 class="text-center">COVID-19 Coronavirus ARSW</h1>
+
+    </div>
+    <br>
+    <div class="row">
+        <table class="table table-bordered">
+            <thread>
+                <tr>
+                    <th scope="col">Country</th>
+                    <th scope="col">Num deaths</th>
+                    <th scope="col">Num infected</th>
+                    <th scope="col">Num cured</th>
+                </tr>
+            </thread>
+            <tbody id ="todosLosPaises" onload="app.generarTabla"></tbody>
+        </table>
+    </div>
+    <br>
+    <div class="row">
+
+        <div class="col">
+            <label for="ciudad" value="Country"></label>
+            <input id="ciudad" type="text">
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-success" onclick="app.generarTablaByCountry(ciudad.value)">Search</button>
+            <br>
+        </div>
+
+        <br>
+
+    </div>
+
+    <div class="row">
+        <div class="col"><div id="map"></div></div>
+        <div class="col">
+            <table class="table table-bordered">
+                <thread>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Birth Date</th>
+                    </tr>
+                </thread>
+                <tbody id ="numeros"></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table table-bordered">
+                <thread>
+                    <tr>
+                        <th scope="col">Region</th>
+                        <th scope="col">Num Deaths</th>
+                        <th scope="col">Num Infected</th>
+                        <th scope="col">Num Cured</th>
+                    </tr>
+                </thread>
+                <tbody id ="regiones"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>
