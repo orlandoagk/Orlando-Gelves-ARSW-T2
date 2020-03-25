@@ -67,7 +67,6 @@ public class CoronavirusStatsService {
         String info = null;
         try {
             info = httpConnectionService.getCovid19StatsAll();
-            System.out.println(info);
             JSONArray jsonAMandar = new JSONArray();
             JSONObject json = new JSONObject(info);
             JSONObject data = new JSONObject(json.get("data").toString());
