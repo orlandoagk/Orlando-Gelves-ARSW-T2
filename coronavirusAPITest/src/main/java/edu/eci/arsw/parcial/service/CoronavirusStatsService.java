@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * Es una clase que permite utilizar los servicios de la aplicación de Covid19
+ */
 @Service
 public class CoronavirusStatsService {
     @Autowired
@@ -18,6 +21,12 @@ public class CoronavirusStatsService {
 
     @Autowired
     CoronavirusStatsCache coronavirusStatsCache;
+
+    /**
+     *
+     * @param country Es el pais del cual quiere conseguir información con respecto al Covid19
+     * @return Retorna un String en formato JSON con la información del pais puesto
+     */
     public String getCovidStatsByName(String country){
         String info = null;
         try {
@@ -49,6 +58,10 @@ public class CoronavirusStatsService {
         return info;
     }
 
+    /**
+     *
+     * @return Retorna un String en formato JSON el cual tendrá la información de todos los paises contagiados por el virus Covid19
+     */
     public String getCovidStatsAll(){
         String info = null;
         try {

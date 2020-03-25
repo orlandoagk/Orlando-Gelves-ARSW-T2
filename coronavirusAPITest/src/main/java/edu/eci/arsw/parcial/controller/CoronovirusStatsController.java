@@ -12,12 +12,21 @@ public class CoronovirusStatsController {
     @Autowired
     CoronavirusStatsService coronavirusStatsService;
 
+    /**
+     *
+     * @param country Es el país el cual quieres consultar su información con respecto al Covid19
+     * @return Es una respuesta HTTP
+     */
     @RequestMapping(value = "/getCasesByCountry/{country}",method = RequestMethod.GET)
     public ResponseEntity<?> getCasesByCountry(@PathVariable String country){
         String stats = coronavirusStatsService.getCovidStatsByName(country);
         return new ResponseEntity<>(stats, HttpStatus.OK);
     }
 
+    /**
+     *
+     * @return Es una respuesta HTTP
+     */
     @RequestMapping(value="/getAllCases")
     public ResponseEntity<?> getAllCases(){
         String stats = coronavirusStatsService.getCovidStatsAll();
