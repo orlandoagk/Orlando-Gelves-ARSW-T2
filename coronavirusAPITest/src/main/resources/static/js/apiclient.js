@@ -7,7 +7,7 @@ var apiclient = ( function () {
             url: '/covid19/getAllCases',
 
         })
-            .then(response => callback(response.data))
+            .then(response => callback(response))
             .catch(error => console.log(error));
     });
 

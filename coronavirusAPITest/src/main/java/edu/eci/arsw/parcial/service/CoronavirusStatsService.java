@@ -1,6 +1,7 @@
 package edu.eci.arsw.parcial.service;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
+import edu.eci.arsw.parcial.models.Country;
 import edu.eci.arsw.parcial.persistence.CoronavirusStatsCache;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.Set;
 
 @Service
 public class CoronavirusStatsService {
@@ -51,6 +53,29 @@ public class CoronavirusStatsService {
         String info = null;
         try {
             info = httpConnectionService.getCovid19StatsAll();
+            System.out.println(info);
+            JSONArray jsonAMandar = new JSONArray();
+            JSONObject json = new JSONObject(info);
+            JSONObject data = new JSONObject(json.get("data").toString());
+            JSONArray covid19Stats = new JSONArray(data.get("covid19Stats").toString());
+            HashMap<String, Country> countryHashMap = new HashMap<>();
+            for(int i = 0;i<covid19Stats.length();i++){
+                JSONObject tmp = (JSONObject) covid19Stats.get(i);
+                if(countryHashMap.containsKey(tmp.get("country").toString())){
+                    countryHashMap.get(tmp.get("country").toString()).sumarJSON(tmp);
+                } else {
+                    countryHashMap.put(tmp.get("country").toString(),new Country(tmp));
+                }
+            }
+
+
+            for(String string:countryHashMap.keySet()){
+                jsonAMandar.put(countryHashMap.get(string).getJsonObject());
+            }
+            info=jsonAMandar.toString();
+
+
+
 
         } catch (UnirestException e) {
             e.printStackTrace();

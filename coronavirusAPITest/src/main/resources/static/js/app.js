@@ -4,7 +4,7 @@ var app = (function(){
     }
 
     var crearTabla = (function (paises) {
-        var superPaises = JSON.stringify(paises.data.covid19Stats);
+        var superPaises = JSON.stringify(paises.data);
         var paisesCompletos = JSON.parse(superPaises)
         $("#todosLosPaises").empty();
         paisesCompletos.map(function(element){
