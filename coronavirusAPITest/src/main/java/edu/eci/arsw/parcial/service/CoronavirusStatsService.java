@@ -7,6 +7,8 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+
 @Service
 public class CoronavirusStatsService {
     @Autowired
@@ -37,6 +39,7 @@ public class CoronavirusStatsService {
                 String infoReal = nuevoCovid19Stats.toString();
                 System.out.println(infoReal);
                 coronavirusStatsCache.cargarCache(country,infoReal);
+                info = infoReal;
             }
         } catch (UnirestException e) {
             e.printStackTrace();
@@ -48,6 +51,7 @@ public class CoronavirusStatsService {
         String info = null;
         try {
             info = httpConnectionService.getCovid19StatsAll();
+
         } catch (UnirestException e) {
             e.printStackTrace();
         }
