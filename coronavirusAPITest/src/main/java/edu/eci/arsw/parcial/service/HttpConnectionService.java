@@ -23,4 +23,12 @@ public class HttpConnectionService {
                 .asString();
         return response.getBody();
     }
+
+    public String getLatLongByCountry(String country) throws UnirestException{
+        HttpResponse<String> response = Unirest.get("https://restcountries-v1.p.rapidapi.com/name/"+country)
+                .header("x-rapidapi-host", "restcountries-v1.p.rapidapi.com")
+                .header("x-rapidapi-key", "0e72bcd144msh8951afd83016cbbp115df0jsnf8ca2e9da0ec")
+                .asString();
+        return response.getBody();
+    }
 }
